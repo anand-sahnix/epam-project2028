@@ -1,15 +1,15 @@
 <html>
 <head>
 <title>XYZ Bank</title>
-<script type="text/javascript">
 
+<script type="text/javascript">
 function trigger()
 {
-document.getElementById("hover").addEventListener("mouseover",popup);
-function popup()
-{
-alert("Welcome to XYZ bank !!! ");
-}
+    document.getElementById("hover").addEventListener("mouseover",popup);
+    function popup()
+    {
+        alert("Welcome to XYZ bank !!! ");
+    }
 }
 
 </script>
@@ -18,16 +18,20 @@ alert("Welcome to XYZ bank !!! ");
 <script>
 function validateCustomer()
 {
-var custId=document.getElementById("custID").value;
-var validateCust=custId.includes("XYZ");
-if (validateCust)
-{
-document.write("Customer ID is valid,you can proceed further to generate coupon");
-}
-else if(validateCust == "")
-document.write("Customer ID can't be blank");
-else
-document.write("You are not a valid customer");
+    var custId=document.getElementById("custID").value;
+    var validateCust=custId.includes("XYZ");
+    if (validateCust)
+    {
+        document.write("Customer ID is valid,you can proceed further to generate coupon");
+    }
+    else if(validateCust == "")
+    {
+        document.write("Customer ID can't be blank");
+    }
+    else
+    {
+        document.write("You are not a valid customer");
+    }
 }
 </script>
 
@@ -35,24 +39,25 @@ document.write("You are not a valid customer");
 <script>
 function generateCoupon()
 {
-var custId=document.getElementById("custID").value;
-var x = custId +"789456";
-var validateCust=custId.includes("XYZ");
-if (validateCust)
-{
-document.write("Your coupon is:"+x);
+    var custId=document.getElementById("custID").value;
+    var x = custId +"789456";
+    var validateCust=custId.includes("XYZ");
+    if (validateCust)
+    {
+        document.write("Your coupon is:"+x);
+    }
+    else
+    {
+        document.write("Invalid customer ID so coupon can't be generated");
+    }
 }
-else
-document.write("Invalid customer ID so coupon can't be generated");
-}
-
 </script>
 </head>
 
 
 
 <body onload="trigger();">
-
+    
 <p id="hover">Welcome customer !!!</p>
 <p id="demo">Follow the below Steps to get Diwali coupon :-<br>
 1)Enter your customer ID in the textbox<br>
@@ -61,7 +66,7 @@ document.write("Invalid customer ID so coupon can't be generated");
 
 </p>
 
-<button type="button" onclick="Tocument.getElementById('demo').style.display='none'">Click here to Register</button><br><br><br>
+<button type="button" onclick="document.getElementById('demo').style.display='none'">Click here to Register</button><br><br><br>
 Enter Customer ID:
 <input id="custID" type="text" name="customerID"><br><br>
 
@@ -70,7 +75,4 @@ Enter Customer ID:
 <button type="button" onclick="generateCoupon()">Click here to generate coupon</button>
 
 </body>
-
-
-
 </html>
