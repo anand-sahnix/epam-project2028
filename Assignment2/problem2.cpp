@@ -5,11 +5,8 @@ int main() {
 
     int N, M, D;
     cin >> N >> M >> D;
-
-    // Adjacency list
     vector<vector<int>> graph(N + 1);
 
-    // Read roads
     for (int i = 0; i < M; i++) {
         int u, v;
         cin >> u >> v;
@@ -20,7 +17,7 @@ int main() {
 
     vector<int> distance(N + 1, -1);
 
-    // BFS queue
+
     queue<int> q;
 
  
@@ -31,7 +28,6 @@ int main() {
         int current = q.front();
         q.pop();
 
-        // Visit all connected cities
         for (int next : graph[current]) {
 
             // If city has not been visited
@@ -42,7 +38,6 @@ int main() {
         }
     }
 
-    // Count cities with distance <= D
     int answer = 0;
 
     for (int city = 1; city <= N; city++) {
@@ -55,3 +50,6 @@ int main() {
 
     return 0;
 }
+
+
+
