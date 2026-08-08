@@ -1,42 +1,57 @@
-/*
-Problem 2: Emergency Route Validation
-A country's transportation department models its highway system as a connected undirected graph. Each city is represented by a vertex, while highways are represented by edges. During emergencies, rescue teams need to travel from the capital city (City 1) to all other cities. However, not every city is considered safely reachable because some routes may contain too many intermediate cities.
+#include <bits/stdc++.h>
+using namespace std;
 
-A city is called efficiently reachable if the length of the shortest path from City 1 to that city is less than or equal to D roads. Determine the total number of efficiently reachable cities, including the capital. Unreachable cities are not counted.
-Input Format
-First line: N M D
-Next M lines: u v (roads)
-Output Format
-Print the number of efficiently reachable cities.
-Constraints
-1 ≤ N ≤ 10^5
-0 ≤ M ≤ 2×10^5
-0 ≤ D ≤ N
-No self-loops
-Sample Input
-7 8 2
-1 2
-1 3
-2 4
-2 5
-3 6
-6 7
-5 7
-4 6
-Sample Output
-6
-Explanation
-Run BFS from City 1 to compute the shortest distance to every city. Count cities whose distance is at most D.
-Example
-Input:
-6 5 1
-1 2
-2 3
-1 4
-4 5
-5 6
+int main() {
 
-Output:
-3
+    int N, M, D;
+    cin >> N >> M >> D;
 
-*/
+    // Adjacency list
+    vector<vector<int>> graph(N + 1);
+
+    // Read roads
+    for (int i = 0; i < M; i++) {
+        int u, v;
+        cin >> u >> v;
+
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+
+    vector<int> distance(N + 1, -1);
+
+    // BFS queue
+    queue<int> q;
+
+ 
+    distance[1] = 0;
+    q.push(1);
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        // Visit all connected cities
+        for (int next : graph[current]) {
+
+            // If city has not been visited
+            if (distance[next] == -1) {
+                distance[next] = distance[current] + 1;
+                q.push(next);
+            }
+        }
+    }
+
+    // Count cities with distance <= D
+    int answer = 0;
+
+    for (int city = 1; city <= N; city++) {
+        if (distance[city] != -1 && distance[city] <= D) {
+            answer++;
+        }
+    }
+
+    cout << answer << '\n';
+
+    return 0;
+}
